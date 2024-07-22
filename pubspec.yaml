@@ -19,7 +19,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   http: ^1.0.0
-  js: ^0.6.0
+  js: ^0.7.0
   mobile_scanner: 3.3.0
   provider: ^6.0.0
   web_browser_detect: ^2.0.0
