@@ -39,11 +39,7 @@ class _EventListener {
 class MotionEvent {
   final double x, y, z;
 
-  const MotionEvent({
-    required this.x,
-    required this.y,
-    required this.z,
-  });
+  const MotionEvent({required this.x, required this.y, required this.z});
 
   @override
   String toString() {
@@ -58,11 +54,11 @@ class Motion {
   static StreamSubscription subscribe(void Function(MotionEvent) handler) {
     final controller = StreamController<MotionEvent>();
     final eventListener = _EventListener(controller);
-    controller.onListen = () => window.addEventListener(
-          kDeviceMotionEventType,
-          eventListener.call,
-        );
-    controller.onCancel = () => window.removeEventListener(
+    controller.onListen =
+        () =>
+            window.addEventListener(kDeviceMotionEventType, eventListener.call);
+    controller.onCancel =
+        () => window.removeEventListener(
           kDeviceMotionEventType,
           eventListener.call,
         );
