@@ -191,8 +191,8 @@ class MisfortuneBloc extends Bloc<_MisfortuneEvent, MisfortuneState> {
     required MisfortuneClient client,
     required String? code,
     required String? wheelId,
-  })  : _client = client,
-        super(MisfortuneState.initial(code: code, wheelId: wheelId)) {
+  }) : _client = client,
+       super(MisfortuneState.initial(code: code, wheelId: wheelId)) {
     if (state.stage == Stage.awaitingPermissions) {
       requestSafariPermissions();
     } else if (code != null) {
@@ -262,9 +262,7 @@ class MisfortuneBloc extends Bloc<_MisfortuneEvent, MisfortuneState> {
   }
 
   void _subscribe() {
-    _subscription = Motion.subscribe(
-      (event) => add(_AccelEvent(event)),
-    );
+    _subscription = Motion.subscribe((event) => add(_AccelEvent(event)));
   }
 
   FutureOr<void> _receivedPermissionResult(
@@ -274,25 +272,26 @@ class MisfortuneBloc extends Bloc<_MisfortuneEvent, MisfortuneState> {
     if (event.result == 'granted') {
       emit(state.permissionGranted());
     } else {
-      emit(state.copy(
-        movement: null,
-        code: null,
-        error: 'Did not get permission: ${event.result}',
-      ));
+      emit(
+        state.copy(
+          movement: null,
+          code: null,
+          error: 'Did not get permission: ${event.result}',
+        ),
+      );
     }
   }
 
-  FutureOr<void> _scanQr(
-    ScanQrEvent event,
-    Emitter<MisfortuneState> emit,
-  ) {
+  FutureOr<void> _scanQr(ScanQrEvent event, Emitter<MisfortuneState> emit) {
     _subscribe();
-    emit(state.awaitSpin(
-      tooSlow: false,
-      speed: null,
-      code: event.code,
-      wheelId: event.wheelId,
-    ));
+    emit(
+      state.awaitSpin(
+        tooSlow: false,
+        speed: null,
+        code: event.code,
+        wheelId: event.wheelId,
+      ),
+    );
   }
 
   FutureOr<void> _pressButton(

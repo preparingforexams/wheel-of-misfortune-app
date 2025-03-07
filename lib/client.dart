@@ -16,13 +16,9 @@ class HttpMisfortuneClient implements MisfortuneClient {
     required double speed,
   }) async {
     final response = await http.post(
-      Uri.https(
-        'api.bembel.party',
-        '/wheel/$wheelId/is_locked',
-        {
-          'speed': '$speed',
-        },
-      ),
+      Uri.https('api.bembel.party', '/wheel/$wheelId/is_locked', {
+        'speed': '$speed',
+      }),
       headers: {'Authorization': 'Bearer $code'},
     );
 

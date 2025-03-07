@@ -15,11 +15,7 @@ class MyApp extends StatelessWidget {
   final String? code;
   final String? wheelId;
 
-  const MyApp({
-    super.key,
-    required this.code,
-    required this.wheelId,
-  });
+  const MyApp({super.key, required this.code, required this.wheelId});
 
   // This widget is the root of your application.
   @override
@@ -47,20 +43,17 @@ class BlocPage extends StatelessWidget {
   final String? code;
   final String? wheelId;
 
-  const BlocPage({
-    super.key,
-    required this.code,
-    required this.wheelId,
-  });
+  const BlocPage({super.key, required this.code, required this.wheelId});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<MisfortuneBloc>(
-      create: (context) => MisfortuneBloc(
-        client: HttpMisfortuneClient(),
-        code: code,
-        wheelId: wheelId,
-      ),
+      create:
+          (context) => MisfortuneBloc(
+            client: HttpMisfortuneClient(),
+            code: code,
+            wheelId: wheelId,
+          ),
       child: const MainPage(),
     );
   }
@@ -143,7 +136,7 @@ class SpinContent extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text('Dreh das Rad!'),
-                if (state.tooSlow) const Text('Schneller!')
+                if (state.tooSlow) const Text('Schneller!'),
               ],
             );
           case Stage.failed:
@@ -169,9 +162,7 @@ class _QrScannerState extends State<QrScanner> {
   @override
   void initState() {
     super.initState();
-    _controller = MobileScannerController(
-      facing: CameraFacing.back,
-    );
+    _controller = MobileScannerController(facing: CameraFacing.back);
   }
 
   @override

@@ -3,9 +3,7 @@ library;
 
 import 'package:js/js.dart';
 
-void requestDeviceMotionEventPermission(
-  void Function(String?) callback,
-) {
+void requestDeviceMotionEventPermission(void Function(String?) callback) {
   _requestDeviceMotionEventPermission(allowInterop(callback));
 }
 
