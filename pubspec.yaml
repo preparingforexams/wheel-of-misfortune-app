@@ -16,7 +16,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.0.0
+  flutter_bloc: ^9.0.0
   flutter_web_plugins:
     sdk: flutter
   http: ^1.0.0
