@@ -58,7 +58,7 @@ jobs:
     if: github.ref_name == github.event.repository.default_branch
     needs: build
     concurrency: production
-    container: rclone/rclone:1.69
+    container: rclone/rclone:1.70
     steps:
       - uses: actions/download-artifact@v4
         with:
