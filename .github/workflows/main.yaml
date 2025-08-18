@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v5
-      - uses: jdx/mise-action@v2
+      - uses: jdx/mise-action@v3
       - name: Check lib formatting
         run: dart format lib --set-exit-if-changed --output=none
 
@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v5
-      - uses: jdx/mise-action@v2
+      - uses: jdx/mise-action@v3
       - name: Get dependencies
         run: flutter pub get
       - name: Run Analysis
