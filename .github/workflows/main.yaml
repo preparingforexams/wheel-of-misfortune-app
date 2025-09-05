@@ -37,7 +37,7 @@ jobs:
     name: Build Web Package
     runs-on: ubuntu-24.04
     container:
-      image: ghcr.io/blindfoldedsurgery/flutter:3.2.0-3.27
+      image: ghcr.io/blindfoldedsurgery/flutter:4.0.0-3.27
       options: --user 0
     needs: [check-format, lint]
     steps:
