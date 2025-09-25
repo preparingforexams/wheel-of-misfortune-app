@@ -64,7 +64,7 @@ jobs:
     concurrency: production
     container: rclone/rclone:1.71
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: web-app
       - name: Save rclone config
