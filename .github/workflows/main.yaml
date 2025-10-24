@@ -52,7 +52,7 @@ jobs:
       - name: Build web package
         run: flutter build web
       - name: Store build result
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: web-app
           path: build/web
@@ -64,7 +64,7 @@ jobs:
     concurrency: production
     container: rclone/rclone:1.71
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: web-app
       - name: Save rclone config
