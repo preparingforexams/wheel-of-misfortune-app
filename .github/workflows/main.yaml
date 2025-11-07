@@ -32,6 +32,18 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
+      - name: Configure pub dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ runner.temp }}/flutter/pub-cache
+            .dart_tool
+          key: flutter-pub-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('**/pubspec.lock') }}
+      - name: Configure pub cache location
+        env:
+          PUB_CACHE: ${{ runner.temp }}/flutter/pub-cache
+        run: |
+          echo "PUB_CACHE=${PUB_CACHE}" >> "$GITHUB_ENV"
       - name: Get dependencies
         run: flutter pub get
       - name: Run Analysis
@@ -40,13 +52,23 @@ jobs:
   build:
     name: Build Web Package
     runs-on: ubuntu-24.04
-    container:
-      image: ghcr.io/blindfoldedsurgery/flutter:4.0.0-3.27
-      options: --user 0
     needs: [check-format, lint]
     steps:
       - name: Check out repo
         uses: actions/checkout@v5
+      - uses: jdx/mise-action@v3
+      - name: Configure pub dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ runner.temp }}/flutter/pub-cache
+            .dart_tool
+          key: flutter-pub-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('**/pubspec.lock') }}
+      - name: Configure pub cache location
+        env:
+          PUB_CACHE: ${{ runner.temp }}/flutter/pub-cache
+        run: |
+          echo "PUB_CACHE=${PUB_CACHE}" >> "$GITHUB_ENV"
       - name: Get dependencies
         run: flutter pub get
       - name: Build web package
